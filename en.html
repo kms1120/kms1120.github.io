@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiel Sanciangco — IT Support Student</title>
+<meta name="description" content="Kiel Sanciangco — IT support student specializing in cybersecurity and systems. Helsinki, Finland.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #10141A;
+    --surface: #171D26;
+    --border: #262E3A;
+    --text: #E4E7EB;
+    --text-muted: #8B94A3;
+    --accent: #5FA8D3;
+    --accent-dim: rgba(95, 168, 211, 0.12);
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+
+  .lang-toggle {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  .lang-toggle a {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+  .lang-toggle a:hover { border-color: var(--accent); }
+
+  /* ---- header: terminal-style status block ---- */
+  header.intro {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 28px 28px 24px;
+    margin-bottom: 56px;
+  }
+
+  .prompt-line {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+  }
+  .prompt-line .sym { color: var(--accent); }
+
+  header.intro h1 {
+    font-family: var(--mono);
+    font-size: clamp(1.6rem, 5vw, 2.1rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .role-line {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .status-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 16px;
+    font-family: var(--mono);
+    font-size: 13px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .status-grid dt { color: var(--text-muted); }
+  .status-grid dd { color: var(--text); word-break: break-word; }
+
+  /* ---- sections ---- */
+  section { margin-bottom: 48px; }
+
+  section > h2 {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section > p.lead {
+    color: var(--text);
+    max-width: 60ch;
+  }
+
+  /* ---- skill modules ---- */
+  .modules {
+    display: grid;
+    gap: 14px;
+  }
+  .module {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+  .module h3 {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .module p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* ---- experience / education entries ---- */
+  .entry {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .entry:last-child { border-bottom: none; }
+
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+  }
+  .entry-head h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .entry-head time {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .entry .org {
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .entry ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .entry li {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    padding-left: 16px;
+    position: relative;
+  }
+  .entry li::before {
+    content: "–";
+    position: absolute;
+    left: 0;
+    color: var(--border);
+  }
+
+  /* ---- projects ---- */
+  .projects { display: grid; gap: 16px; }
+  .project {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 20px;
+    background: var(--surface);
+  }
+  .project h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .project p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+  }
+
+  /* ---- interests ---- */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: var(--accent-dim);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 5px 10px;
+  }
+
+  /* ---- footer ---- */
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 40px 18px 72px; }
+    header.intro { padding: 22px 18px 20px; }
+    .status-grid { grid-template-columns: 1fr; gap: 2px 0; }
+    .status-grid dt { margin-top: 8px; }
+    .entry-head { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="lang-toggle"><a href="index.html">suomeksi</a></div>
+
+  <header class="intro">
+    <div class="prompt-line"><span class="sym">$</span> whoami</div>
+    <h1>Kiel Makki Sanciangco</h1>
+    <div class="role-line">IT Support Student — Cybersecurity &amp; Systems</div>
+    <dl class="status-grid">
+      <dt>location</dt><dd>Helsinki, Finland</dd>
+      <dt>status</dt><dd>Looking for an 18-week IT internship</dd>
+      <dt>email</dt><dd><a href="mailto:kielsanciangco@gmail.com">kielsanciangco@gmail.com</a></dd>
+      <dt>linkedin</dt><dd><a href="https://linkedin.com/in/kielsanciangco" target="_blank" rel="noopener">linkedin.com/in/kielsanciangco</a></dd>
+      <dt>github</dt><dd><a href="https://github.com/kms1120" target="_blank" rel="noopener">github.com/kms1120</a></dd>
+    </dl>
+  </header>
+
+  <section id="profile">
+    <h2>profile</h2>
+    <p class="lead">IT student at Business College Helsinki, graduating in 2027. Specializing in cybersecurity and technical support — solid practical experience with operating systems, networking, remote support, and scripting. Completing a Vocational Qualification in Information and Communications Technology (IT Support Specialist) with a grade of S+ in cybersecurity, systems administration, and automation coursework.</p>
+  </section>
+
+  <section id="skills">
+    <h2>core skills</h2>
+    <div class="modules">
+      <div class="module">
+        <h3>IT support &amp; systems</h3>
+        <p>Technical helpdesk / service desk, remote support (RMM tools), Windows and Linux/Unix system administration, user account management, hardware and driver troubleshooting, ITIL-based service processes, SLA awareness, ticket handling.</p>
+      </div>
+      <div class="module">
+        <h3>Cybersecurity</h3>
+        <p>Cyber threat awareness and risk assessment, encryption methods, web application security / ethical hacking fundamentals, security patch management, data protection (GDPR) and IT legislation.</p>
+      </div>
+      <div class="module">
+        <h3>Scripting &amp; automation</h3>
+        <p>Unix/Linux command line, Python, HTML5 &amp; CSS3, task scripting and automation, AI/LLM tools (prompt-based development).</p>
+      </div>
+      <div class="module">
+        <h3>Tools, Office &amp; languages</h3>
+        <p>Microsoft Excel, PowerPoint, Word, Office 365, remote desktop tools. Languages: Filipino (native), Finnish (fluent—excellent, Finnish as a second language), English (fluent), Swedish (basic).</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>work experience</h2>
+
+    <div class="entry">
+      <div class="entry-head">
+        <h3>Guest Support Intern</h3>
+        <time>Oct–Dec 2025</time>
+      </div>
+      <div class="org">Bob W Finland Oy — hospitality tech company</div>
+      <ul>
+        <li>Provided guest support and resolved issues by phone, email, and chat during an internship at a tech-driven hospitality company; developed customer communication skills relevant to service desk work.</li>
+        <li>Gave feedback and improvement suggestions to raise service quality, and responded to guest reviews, demonstrating reliability and independent work.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <h3>Hotel Maintenance &amp; General Assistant</h3>
+        <time>Mar 2022</time>
+      </div>
+      <ul>
+        <li>Assisted with daily hotel maintenance tasks, room readiness checks, and other operational duties.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <h3>Restaurant Kitchen Assistant</h3>
+        <time>Feb–Jul 2022</time>
+      </div>
+      <div class="org">Friends &amp; Brgrs Restaurant</div>
+      <ul>
+        <li>Assisted kitchen staff with food preparation and cleaning duties.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>education</h2>
+
+    <div class="entry">
+      <div class="entry-head">
+        <h3>Vocational Qualification in ICT (IT Support Specialist)</h3>
+        <time>2024–2027</time>
+      </div>
+      <div class="org">Business College Helsinki</div>
+      <ul>
+        <li>Core studies graded S+: problem-solving, operating systems and computer function, network communication and information security.</li>
+        <li>Vocational studies (S+): technical support practice, customer communication, application and OS support, remote device support.</li>
+        <li>Elective track — systems administration: server management, scripting and automation, cyber threat identification, encryption methods, GDPR.</li>
+        <li>Elective studies (Excellent): web hacking fundamentals, HTML5/CSS3 and Python basics, Unix command line basics.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <h3>Comprehensive School — Vesala School</h3>
+        <time>2019–2024</time>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>personal projects</h2>
+    <div class="projects">
+      <div class="project">
+        <h3>AI Companion App</h3>
+        <p>Designed and built a conversational AI-based application using AI-assisted development workflows. Hands-on experience with LLM prompting, application structure, and iterative debugging.</p>
+      </div>
+      <div class="project">
+        <h3>Home Lab</h3>
+        <p>Built and configured my own desktop PC — hands-on experience with component selection, assembly, OS installation, and performance tuning.</p>
+      </div>
+      <div class="project">
+        <h3>Cybersecurity Practice</h3>
+        <p>Independently completed cybersecurity exercises and labs through Hakatemia and TryHackMe — identifying and exploiting common web application vulnerabilities in a safe, legal environment.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="interests">
+    <h2>interests</h2>
+    <div class="tags">
+      <span class="tag">Competitive FPS</span>
+      <span class="tag">Mechanical keyboards</span>
+      <span class="tag">PC peripherals</span>
+      <span class="tag">Rhythm games</span>
+      <span class="tag">IEMs &amp; audio gear</span>
+    </div>
+  </section>
+
+  <footer>
+    <span>Kiel Sanciangco</span>
+    <span>Helsinki, 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
